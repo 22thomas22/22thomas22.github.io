@@ -1,525 +1,453 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Thomas Crawford</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #0f0e0d;
-    --surface: #1a1916;
-    --accent: #f0c040;
-    --accent2: #e05a2b;
-    --text: #f0ede6;
-    --muted: #7a766e;
-    --border: #2e2c28;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thomas Crawford</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f0e0d;
+      --surface: #1a1916;
+      --accent: #f0c040;
+      --accent2: #e05a2b;
+      --text: #f0ede6;
+      --muted: #7a766e;
+      --border: #2e2c28;
+    }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'DM Mono', monospace;
-    font-size: 15px;
-    line-height: 1.7;
-    cursor: crosshair;
-  }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Mono', monospace;
+      font-size: 15px;
+      line-height: 1.7;
+      cursor: crosshair;
+    }
 
-  /* noise overlay */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 9999;
-    opacity: 0.4;
-  }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.4;
+    }
 
-  .container {
-    max-width: 780px;
-    margin: 0 auto;
-    padding: 0 2rem;
-  }
+    .container { max-width: 780px; margin: 0 auto; padding: 0 2rem; }
 
-  /* ── HEADER ── */
-  header {
-    padding: 5rem 0 3rem;
-    border-bottom: 1px solid var(--border);
-    animation: fadeUp 0.7s ease both;
-  }
+    header {
+      padding: 5rem 0 3rem;
+      border-bottom: 1px solid var(--border);
+      animation: fadeUp 0.7s ease both;
+    }
 
-  .tag {
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    color: var(--accent);
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-  }
+    .tag {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
 
-  h1 {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(3rem, 8vw, 6rem);
-    font-weight: 800;
-    line-height: 0.95;
-    letter-spacing: -0.02em;
-    margin-bottom: 1.5rem;
-  }
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+    }
 
-  h1 span {
-    color: var(--accent);
-    display: inline-block;
-    animation: wobble 3s ease-in-out infinite;
-  }
+    h1 span {
+      color: var(--accent);
+      display: inline-block;
+      animation: wobble 3s ease-in-out infinite;
+    }
 
-  .intro {
-    max-width: 520px;
-    color: var(--muted);
-    font-size: 14px;
-    margin-bottom: 2rem;
-  }
+    .intro { max-width: 520px; color: var(--muted); font-size: 14px; margin-bottom: 2rem; }
 
-  .contact-line {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    font-size: 12px;
-    color: var(--muted);
-  }
+    .contact-line { display: flex; flex-wrap: wrap; gap: 1.5rem; font-size: 12px; color: var(--muted); }
 
-  .contact-line a {
-    color: var(--muted);
-    text-decoration: none;
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 1px;
-    transition: color 0.2s, border-color 0.2s;
-  }
+    .contact-line a {
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
 
-  .contact-line a:hover { color: var(--accent); border-color: var(--accent); }
+    .contact-line a:hover { color: var(--accent); border-color: var(--accent); }
 
-  /* ── SECTIONS ── */
-  section {
-    padding: 3rem 0;
-    border-bottom: 1px solid var(--border);
-    animation: fadeUp 0.7s ease both;
-  }
+    section {
+      padding: 3rem 0;
+      border-bottom: 1px solid var(--border);
+      animation: fadeUp 0.7s ease both;
+    }
 
-  section:nth-child(2) { animation-delay: 0.1s; }
-  section:nth-child(3) { animation-delay: 0.2s; }
-  section:nth-child(4) { animation-delay: 0.3s; }
-  section:nth-child(5) { animation-delay: 0.4s; }
-  section:nth-child(6) { animation-delay: 0.5s; }
+    section:nth-of-type(1) { animation-delay: 0.1s; }
+    section:nth-of-type(2) { animation-delay: 0.2s; }
+    section:nth-of-type(3) { animation-delay: 0.3s; }
+    section:nth-of-type(4) { animation-delay: 0.4s; }
+    section:nth-of-type(5) { animation-delay: 0.5s; }
 
-  .section-label {
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent2);
-    margin-bottom: 2rem;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
 
-  .section-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-  }
+    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 
-  h2 {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 1.1rem;
-    margin-bottom: 0.25rem;
-  }
+    h2 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; margin-bottom: 0.25rem; }
 
-  /* ── EXPANDABLE ── */
-  .expand-wrap { margin-bottom: 1.5rem; }
+    .expand-wrap { margin-bottom: 1.5rem; }
 
-  .expand-trigger {
-    display: inline;
-    cursor: pointer;
-    border-bottom: 1px dashed var(--accent);
-    color: var(--accent);
-    transition: background 0.15s;
-    padding: 0 2px;
-  }
+    .expand-trigger {
+      display: inline;
+      cursor: pointer;
+      border-bottom: 1px dashed var(--accent);
+      color: var(--accent);
+      transition: background 0.15s;
+      padding: 0 2px;
+    }
 
-  .expand-trigger:hover {
-    background: rgba(240,192,64,0.12);
-  }
+    .expand-trigger:hover { background: rgba(240,192,64,0.12); }
 
-  .expand-trigger::after {
-    content: ' ↓';
-    font-size: 11px;
-    opacity: 0.7;
-    transition: transform 0.3s;
-    display: inline-block;
-  }
+    .expand-trigger::after {
+      content: ' ↓';
+      font-size: 11px;
+      opacity: 0.7;
+      transition: transform 0.3s;
+      display: inline-block;
+    }
 
-  .expand-trigger.open::after {
-    content: ' ↑';
-  }
+    .expand-trigger.open::after { content: ' ↑'; }
 
-  .expand-content {
-    display: grid;
-    grid-template-rows: 0fr;
-    transition: grid-template-rows 0.35s ease;
-    margin-top: 0;
-  }
+    .expand-content {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.35s ease;
+      margin-top: 0;
+    }
 
-  .expand-content.open {
-    grid-template-rows: 1fr;
-    margin-top: 0.75rem;
-  }
+    .expand-content.open { grid-template-rows: 1fr; margin-top: 0.75rem; }
 
-  .expand-inner {
-    overflow: hidden;
-    background: var(--surface);
-    border-left: 2px solid var(--accent);
-    padding: 0 1rem;
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.8;
-    border-radius: 0 4px 4px 0;
-  }
+    .expand-inner {
+      overflow: hidden;
+      background: var(--surface);
+      border-left: 2px solid var(--accent);
+      padding: 0 1rem;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.8;
+      border-radius: 0 4px 4px 0;
+    }
 
-  .expand-content.open .expand-inner {
-    padding: 0.75rem 1rem;
-  }
+    .expand-content.open .expand-inner { padding: 0.75rem 1rem; }
 
-  /* ── PROJECTS ── */
-  .project {
-    margin-bottom: 2rem;
-    padding-bottom: 2rem;
-    border-bottom: 1px solid var(--border);
-  }
+    .project { margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+    .project:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
 
-  .project:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .project-meta { font-size: 11px; color: var(--muted); margin-bottom: 0.25rem; letter-spacing: 0.05em; }
+    .project-title { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .project-desc { font-size: 13px; color: var(--muted); margin-bottom: 0.75rem; }
 
-  .project-meta {
-    font-size: 11px;
-    color: var(--muted);
-    margin-bottom: 0.25rem;
-    letter-spacing: 0.05em;
-  }
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
+    .skill-group h3 { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent2); margin-bottom: 0.5rem; }
+    .skill-group ul { list-style: none; font-size: 13px; color: var(--muted); }
+    .skill-group ul li::before { content: '— '; color: var(--border); }
 
-  .project-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-  }
+    .job { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.25rem; }
+    .job-title { font-size: 14px; font-weight: 500; }
+    .job-date { font-size: 11px; color: var(--muted); font-style: italic; }
 
-  .project-desc {
-    font-size: 13px;
-    color: var(--muted);
-    margin-bottom: 0.75rem;
-  }
+    footer {
+      padding: 3rem 0;
+      font-size: 12px;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
 
-  /* ── SKILLS ── */
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1rem;
-  }
+    .social-links { display: flex; gap: 1.5rem; }
+    .social-links a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .social-links a:hover { color: var(--accent); }
 
-  .skill-group h3 {
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--accent2);
-    margin-bottom: 0.5rem;
-  }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes wobble { 0%, 100% { transform: rotate(-1deg); } 50% { transform: rotate(1deg); } }
 
-  .skill-group ul {
-    list-style: none;
-    font-size: 13px;
-    color: var(--muted);
-  }
+    .cursor-dot {
+      width: 6px; height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 10000;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s;
+    }
 
-  .skill-group ul li::before {
-    content: '— ';
-    color: var(--border);
-  }
+    .contact-box { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 1.5rem; }
+    .contact-box p { color: var(--muted); font-size: 13px; margin-bottom: 1rem; }
 
-  /* ── WORK ── */
-  .job {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 1.25rem;
-  }
+    .contact-box a {
+      display: inline-block;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--accent);
+      text-decoration: none;
+      border: 1px solid var(--accent);
+      padding: 0.5rem 1.25rem;
+      border-radius: 3px;
+      transition: background 0.2s, color 0.2s;
+    }
 
-  .job-title { font-size: 14px; font-weight: 500; }
-  .job-date { font-size: 11px; color: var(--muted); font-style: italic; }
+    .contact-box a:hover { background: var(--accent); color: var(--bg); }
 
-  /* ── FOOTER ── */
-  footer {
-    padding: 3rem 0;
-    font-size: 12px;
-    color: var(--muted);
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
+    .pill {
+      display: inline-block;
+      font-size: 11px;
+      background: rgba(240,192,64,0.1);
+      color: var(--accent);
+      border: 1px solid rgba(240,192,64,0.25);
+      border-radius: 999px;
+      padding: 2px 10px;
+      margin-right: 6px;
+      margin-bottom: 6px;
+    }
 
-  .social-links { display: flex; gap: 1.5rem; }
-  .social-links a {
-    color: var(--muted);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .social-links a:hover { color: var(--accent); }
-
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes wobble {
-    0%, 100% { transform: rotate(-1deg); }
-    50%       { transform: rotate(1deg); }
-  }
-
-  /* ── CURSOR DOT ── */
-  .cursor-dot {
-    width: 6px; height: 6px;
-    background: var(--accent);
-    border-radius: 50%;
-    position: fixed;
-    pointer-events: none;
-    z-index: 10000;
-    transform: translate(-50%, -50%);
-    transition: transform 0.1s;
-  }
-
-  /* ── CONTACT ── */
-  .contact-box {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 1.5rem;
-  }
-
-  .contact-box p { color: var(--muted); font-size: 13px; margin-bottom: 1rem; }
-
-  .contact-box a {
-    display: inline-block;
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 1rem;
-    color: var(--accent);
-    text-decoration: none;
-    border: 1px solid var(--accent);
-    padding: 0.5rem 1.25rem;
-    border-radius: 3px;
-    transition: background 0.2s, color 0.2s;
-  }
-
-  .contact-box a:hover {
-    background: var(--accent);
-    color: var(--bg);
-  }
-
-  .pill {
-    display: inline-block;
-    font-size: 11px;
-    background: rgba(240,192,64,0.1);
-    color: var(--accent);
-    border: 1px solid rgba(240,192,64,0.25);
-    border-radius: 999px;
-    padding: 2px 10px;
-    margin-right: 6px;
-    margin-bottom: 6px;
-  }
-</style>
+    #app-sections { display: contents; }
+  </style>
 </head>
 <body>
 
 <div class="cursor-dot" id="dot"></div>
 
 <div class="container">
-
-  <!-- HEADER -->
-  <header>
-    <p class="tag">Portfolio · Engineering + Creative</p>
-    <h1>Thomas<br><span>Crawford</span></h1>
-    <p class="intro">Engineering student at Blinn College (Rellis Campus) building things that spin, explode, render, and sometimes play themselves.</p>
-    <div class="contact-line">
-      <a href="mailto:thomasscottcrawford20@gmail.com">thomasscottcrawford20@gmail.com</a>
-      <span>979-721-3520</span>
-      <span>College Station, TX</span>
-    </div>
-  </header>
-
-  <!-- ABOUT -->
-  <section>
-    <p class="section-label">About</p>
-    <div class="expand-wrap">
-      <p>
-        I'm pursuing an
-        <span class="expand-trigger" onclick="toggle(this)">Associate of Science in Mechanical Engineering</span>
-        <span class="expand-content"><span class="expand-inner">GPA 3.2 · Blinn College on Rellis Campus, in partnership with Tarleton University · 2024–2026. Focused on mechanical systems, simulation, and hands-on fabrication.</span></span>
-        with a 3.2 GPA, and I split my time between CAD models, game engines, and high-voltage hobby builds.
-      </p>
-    </div>
-    <div class="expand-wrap">
-      <p>
-        I'm fluent in English and Spanish, and I've worked as a
-        <span class="expand-trigger" onclick="toggle(this)">Hardware Repair Technician</span>
-        <span class="expand-content"><span class="expand-inner">Reynolds & Reynolds · May 2024 – May 2025. Diagnosed and repaired hardware systems, developed a methodical approach to technical troubleshooting under real-world conditions.</span></span>
-        and a
-        <span class="expand-trigger" onclick="toggle(this)">Swim Instructor & Lifeguard</span><span class="expand-content"><span class="expand-inner">City of College Station · Apr–Sept 2021. Water safety instruction and emergency response — turns out teaching 7-year-olds to not drown is harder than it sounds.</span></span>
-        before diving deeper into engineering and creative work.
-      </p>
-    </div>
-  </section>
-
-  <!-- ENGINEERING PROJECTS -->
-  <section>
-    <p class="section-label">Engineering Projects</p>
-
-    <div class="project">
-      <p class="project-meta">Rocketry · Team America Rocketry Challenge</p>
-      <h2 class="project-title">
-        <span class="expand-trigger" onclick="toggle(this)">Class-F Rocket Design & Simulation</span>
-      </h2>
-      <div class="expand-content"><div class="expand-inner">Modeled and simulated 4 rocket designs in OpenRocket for the Team America Rocketry Challenge. Iterated on fin geometry, nose cone shape, and motor selection to optimize altitude and stability within competition rules.</div></div>
-    </div>
-
-    <div class="project">
-      <p class="project-meta">Robotics · Python</p>
-      <h2 class="project-title">
-        <span class="expand-trigger" onclick="toggle(this)">Line-Tracking Robot Software</span>
-      </h2>
-      <div class="expand-content"><div class="expand-inner">Wrote Python control software for a premade robot platform, implementing sensor-based line tracking. Focused on PID-style correction logic and real-time sensor feedback loops.</div></div>
-    </div>
-
-    <div class="project">
-      <p class="project-meta">Mechanical · Team Lead of 5</p>
-      <h2 class="project-title">
-        <span class="expand-trigger" onclick="toggle(this)">RC Pushbot with Transmission</span>
-      </h2>
-      <div class="expand-content"><div class="expand-inner">Led a team of 5 to research, fabricate, and assemble a remote-controlled pushbot featuring a custom transmission. Responsible for design decisions, parts sourcing, and coordinating build tasks across the team.</div></div>
-    </div>
-
-    <div class="project">
-      <p class="project-meta">Electronics · Personal Project</p>
-      <h2 class="project-title">
-        <span class="expand-trigger" onclick="toggle(this)">Solid-State Tesla Coil</span>
-      </h2>
-      <div class="expand-content"><div class="expand-inner">Researched, designed, and assembled a custom solid-state Tesla coil from scratch. Involved high-voltage analog circuitry, resonance tuning, and a healthy respect for electricity. It works — and it's loud.</div></div>
-    </div>
-
-    <div class="project">
-      <p class="project-meta">Materials Science · Lab</p>
-      <h2 class="project-title">
-        <span class="expand-trigger" onclick="toggle(this)">Dog Bone Fracture Point Analysis</span>
-      </h2>
-      <div class="expand-content"><div class="expand-inner">Calculated the theoretical fracture point of a dog bone specimen and validated the result against a universal testing machine. A satisfying moment when the math matches the snap.</div></div>
-    </div>
-
-    <div class="project">
-      <p class="project-meta">CAD · Structural Simulation</p>
-      <h2 class="project-title">
-        <span class="expand-trigger" onclick="toggle(this)">Household Structural Modeling</span>
-      </h2>
-      <div class="expand-content"><div class="expand-inner">Modeled household fittings and facades, then simulated stud locations and stress concentration points — practical structural analysis applied to real architectural scenarios.</div></div>
-    </div>
-  </section>
-
-  <!-- UE GAMES -->
-  <section>
-    <p class="section-label">Unreal Engine Games</p>
-    <p style="color:var(--muted); font-size:13px; margin-bottom:2rem;">Games I've built in Unreal Engine — click any title for details.</p>
-
-    <div class="project">
-      <p class="project-meta">Unreal Engine · Game Dev</p>
-      <h2 class="project-title">
-        <span class="expand-trigger" onclick="toggle(this)">[ Your Game Title Here ]</span>
-      </h2>
-      <div class="expand-content"><div class="expand-inner">Add a short description of the game — genre, what makes it interesting, any notable mechanics or visual style. You can add a screenshot or link here too.</div></div>
-    </div>
-
-    <p style="color:var(--muted);font-size:12px;font-style:italic;">→ More games coming soon. Or you can email me and ask nicely.</p>
-  </section>
-
-  <!-- SKILLS -->
-  <section>
-    <p class="section-label">Skills</p>
-    <div class="skills-grid">
-      <div class="skill-group">
-        <h3>3D / Design</h3>
-        <ul>
-          <li>Blender</li>
-          <li>Unreal Engine</li>
-          <li>SolidWorks</li>
-          <li>Fusion 360</li>
-          <li>Inventor</li>
-          <li>AutoCAD</li>
-        </ul>
-      </div>
-      <div class="skill-group">
-        <h3>Programming</h3>
-        <ul>
-          <li>C++</li>
-          <li>C</li>
-          <li>GLSL</li>
-          <li>Python</li>
-          <li>HTML / CSS</li>
-        </ul>
-      </div>
-      <div class="skill-group">
-        <h3>Engineering</h3>
-        <ul>
-          <li>High-Voltage Circuitry</li>
-          <li>Analog Electronics</li>
-          <li>Chemical Safety</li>
-          <li>Basic Neural Networks</li>
-          <li>OpenRocket</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section>
-    <p class="section-label">Contact</p>
-    <div class="contact-box">
-      <p>Open to research collaborations, multidisciplinary projects, and anything that involves building something that shouldn't exist.</p>
-      <a href="mailto:thomasscottcrawford20@gmail.com">Send an email ↗</a>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <span>© 2026 Thomas Crawford</span>
-    <div class="social-links">
-      <a href="https://github.com/22thomas22" target="_blank">GitHub</a>
-      <a href="#">LinkedIn</a>
-    </div>
-  </footer>
-
+  <header id="app-header"></header>
+  <div id="app-sections"></div>
+  <footer id="app-footer"></footer>
 </div>
 
+<!-- ================================================================
+     ALL SITE CONTENT LIVES HERE. Edit this object to update the page —
+     you never need to touch the HTML/CSS below it.
+     ================================================================ -->
 <script>
-  // Cursor dot
-  const dot = document.getElementById('dot');
-  document.addEventListener('mousemove', e => {
-    dot.style.left = e.clientX + 'px';
-    dot.style.top  = e.clientY + 'px';
-  });
+  const SITE = {
+    name: { first: "Thomas", last: "Crawford" },
+    tag: "Portfolio · Engineering + Creative",
+    intro: "Engineering student at Blinn College (Rellis Campus) building things that spin, explode, render, and sometimes play themselves.",
+    contact: {
+      email: "thomasscottcrawford20@gmail.com",
+      phone: "979-721-3520",
+      location: "College Station, TX"
+    },
 
-  // Expand/collapse
+    about: [
+      {
+        text: "I'm pursuing an {expand} with a 3.2 GPA, and I split my time between CAD models, game engines, and high-voltage hobby builds.",
+        expand: {
+          label: "Associate of Science in Mechanical Engineering",
+          detail: "GPA 3.2 · Blinn College on Rellis Campus, in partnership with Tarleton University · 2024–2026. Focused on mechanical systems, simulation, and hands-on fabrication."
+        }
+      },
+      {
+        text: "I'm fluent in English and Spanish, and I've worked as a {expand} and a {expand2} before diving deeper into engineering and creative work.",
+        expand: {
+          label: "Hardware Repair Technician",
+          detail: "Reynolds & Reynolds · May 2024 – May 2025. Diagnosed and repaired hardware systems, developed a methodical approach to technical troubleshooting under real-world conditions."
+        },
+        expand2: {
+          label: "Swim Instructor & Lifeguard",
+          detail: "City of College Station · Apr–Sept 2021. Water safety instruction and emergency response — turns out teaching 7-year-olds to not drown is harder than it sounds."
+        }
+      }
+    ],
+
+    engineeringProjects: [
+      {
+        meta: "Rocketry · Team America Rocketry Challenge",
+        title: "Class-F Rocket Design & Simulation",
+        detail: "Modeled and simulated 4 rocket designs in OpenRocket for the Team America Rocketry Challenge. Iterated on fin geometry, nose cone shape, and motor selection to optimize altitude and stability within competition rules."
+      },
+      {
+        meta: "Robotics · Python",
+        title: "Line-Tracking Robot Software",
+        detail: "Wrote Python control software for a premade robot platform, implementing sensor-based line tracking. Focused on PID-style correction logic and real-time sensor feedback loops."
+      },
+      {
+        meta: "Mechanical · Team Lead of 5",
+        title: "RC Pushbot with Transmission",
+        detail: "Led a team of 5 to research, fabricate, and assemble a remote-controlled pushbot featuring a custom transmission. Responsible for design decisions, parts sourcing, and coordinating build tasks across the team."
+      },
+      {
+        meta: "Electronics · Personal Project",
+        title: "Solid-State Tesla Coil",
+        detail: "Researched, designed, and assembled a custom solid-state Tesla coil from scratch. Involved high-voltage analog circuitry, resonance tuning, and a healthy respect for electricity. It works — and it's loud."
+      },
+      {
+        meta: "Materials Science · Lab",
+        title: "Dog Bone Fracture Point Analysis",
+        detail: "Calculated the theoretical fracture point of a dog bone specimen and validated the result against a universal testing machine. A satisfying moment when the math matches the snap."
+      },
+      {
+        meta: "CAD · Structural Simulation",
+        title: "Household Structural Modeling",
+        detail: "Modeled household fittings and facades, then simulated stud locations and stress concentration points — practical structural analysis applied to real architectural scenarios."
+      }
+    ],
+
+    games: {
+      intro: "Games I've built in Unreal Engine — click any title for details.",
+      list: [
+        {
+          meta: "Unreal Engine · Hobbyist Game Dev",
+          title: "Escape the Lab",
+          detail: "Add a short description of the game — genre, what makes it interesting, any notable mechanics or visual style. You can add a screenshot or link here too."
+        },
+
+      ],
+      footnote: "I may never finish any games, but I find it fun and I learn a lot about OS scheduling, high performance code, and ergonomic design."
+    },
+
+    skills: [
+      { group: "3D / Design", items: ["Blender", "Unreal Engine", "SolidWorks", "Fusion 360", "Inventor", "AutoCAD"] },
+      { group: "Programming", items: ["C++", "C", "GLSL", "Python", "HTML / CSS"] },
+      { group: "Engineering", items: ["High-Voltage Circuitry", "Analog Electronics", "Chemical Safety", "Basic Neural Networks", "OpenRocket"] }
+    ],
+
+    contactBox: {
+      text: "Open to research collaborations, multidisciplinary projects, and anything that involves building something that shouldn't exist.",
+      ctaLabel: "Send an email ↗"
+    },
+
+    footer: {
+      copyright: "© 2026 Thomas Crawford",
+      social: [
+        { label: "GitHub", url: "https://github.com/22thomas22" },
+        { label: "LinkedIn", url: "#" }
+      ]
+    }
+  };
+</script>
+
+<!-- ================================================================
+     RENDERING ENGINE — you shouldn't need to touch this.
+     ================================================================ -->
+<script>
+  const esc = (s) => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+  function expandTrigger(exp) {
+    return `<span class="expand-trigger" onclick="toggle(this)">${esc(exp.label)}</span>` +
+            `<span class="expand-content"><span class="expand-inner">${esc(exp.detail)}</span></span>`;
+  }
+
+  function renderHeader() {
+    const s = SITE;
+    document.getElementById('app-header').innerHTML = `
+      <p class="tag">${esc(s.tag)}</p>
+      <h1>${esc(s.name.first)}<br><span>${esc(s.name.last)}</span></h1>
+      <p class="intro">${esc(s.intro)}</p>
+      <div class="contact-line">
+        <a href="mailto:${esc(s.contact.email)}">${esc(s.contact.email)}</a>
+        <span>${esc(s.contact.phone)}</span>
+        <span>${esc(s.contact.location)}</span>
+      </div>
+    `;
+  }
+
+  function renderAbout() {
+    const items = SITE.about.map(block => {
+      // Replace {expand} and {expand2} placeholders with rendered triggers
+      let html = esc(block.text);
+      if (block.expand) html = html.replace('{expand}', expandTrigger(block.expand));
+      if (block.expand2) html = html.replace('{expand2}', expandTrigger(block.expand2));
+      return `<div class="expand-wrap"><p>${html}</p></div>`;
+    }).join('');
+    return section('About', items);
+  }
+
+  function renderProjects() {
+    const items = SITE.engineeringProjects.map(p => `
+      <div class="project">
+        <p class="project-meta">${esc(p.meta)}</p>
+        <h2 class="project-title"><span class="expand-trigger" onclick="toggle(this)">${esc(p.title)}</span></h2>
+        <div class="expand-content"><div class="expand-inner">${esc(p.detail)}</div></div>
+      </div>
+    `).join('');
+    return section('Engineering Projects', items);
+  }
+
+  function renderGames() {
+    const g = SITE.games;
+    const items = g.list.map(p => `
+      <div class="project">
+        <p class="project-meta">${esc(p.meta)}</p>
+        <h2 class="project-title"><span class="expand-trigger" onclick="toggle(this)">${esc(p.title)}</span></h2>
+        <div class="expand-content"><div class="expand-inner">${esc(p.detail)}</div></div>
+      </div>
+    `).join('');
+    const intro = `<p style="color:var(--muted); font-size:13px; margin-bottom:2rem;">${esc(g.intro)}</p>`;
+    const footnote = `<p style="color:var(--muted);font-size:12px;font-style:italic;">${esc(g.footnote)}</p>`;
+    return section('Unreal Engine Games', intro + items + footnote);
+  }
+
+  function renderSkills() {
+    const groups = SITE.skills.map(g => `
+      <div class="skill-group">
+        <h3>${esc(g.group)}</h3>
+        <ul>${g.items.map(i => `<li>${esc(i)}</li>`).join('')}</ul>
+      </div>
+    `).join('');
+    return section('Skills', `<div class="skills-grid">${groups}</div>`);
+  }
+
+  function renderContact() {
+    const c = SITE.contactBox;
+    const html = `
+      <div class="contact-box">
+        <p>${esc(c.text)}</p>
+        <a href="mailto:${esc(SITE.contact.email)}">${esc(c.ctaLabel)}</a>
+      </div>
+    `;
+    return section('Contact', html);
+  }
+
+  function section(label, innerHTML) {
+    return `<section><p class="section-label">${esc(label)}</p>${innerHTML}</section>`;
+  }
+
+  function renderFooter() {
+    const f = SITE.footer;
+    const links = f.social.map(s => `<a href="${esc(s.url)}" target="_blank">${esc(s.label)}</a>`).join('');
+    document.getElementById('app-footer').innerHTML = `
+      <span>${esc(f.copyright)}</span>
+      <div class="social-links">${links}</div>
+    `;
+  }
+
+  function renderAll() {
+    renderHeader();
+    document.getElementById('app-sections').innerHTML =
+            renderAbout() + renderProjects() + renderGames() + renderSkills() + renderContact();
+    renderFooter();
+    initEffects();
+  }
+
+  // Cursor dot + expand/collapse + scroll fade-in
   function toggle(trigger) {
     trigger.classList.toggle('open');
     const content = trigger.nextElementSibling;
@@ -528,22 +456,36 @@
     }
   }
 
-  // Fade in on scroll
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.style.opacity = 1;
-        e.target.style.transform = 'translateY(0)';
-      }
+  function initEffects() {
+    const dot = document.getElementById('dot');
+    document.addEventListener('mousemove', e => {
+      dot.style.left = e.clientX + 'px';
+      dot.style.top  = e.clientY + 'px';
     });
-  }, { threshold: 0.1 });
 
-  document.querySelectorAll('section').forEach(s => {
-    s.style.opacity = 0;
-    s.style.transform = 'translateY(16px)';
-    s.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-    observer.observe(s);
-  });
+    const sections = document.querySelectorAll('#app-sections section');
+    sections.forEach((s, i) => {
+      s.style.animationDelay = `${0.1 * (i + 1)}s`;
+    });
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = 1;
+          e.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    sections.forEach(s => {
+      s.style.opacity = 0;
+      s.style.transform = 'translateY(16px)';
+      s.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      observer.observe(s);
+    });
+  }
+
+  renderAll();
 </script>
 </body>
 </html>
