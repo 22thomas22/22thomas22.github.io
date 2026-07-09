@@ -229,6 +229,41 @@
     }
 
     #app-sections { display: contents; }
+
+    /* ── MODE TOGGLE ── */
+    .mode-toggle {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 1.75rem;
+    }
+
+    .mode-btn {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+    }
+
+    .mode-btn:hover { color: var(--text); border-color: var(--muted); }
+
+    .mode-btn.active {
+      color: var(--bg);
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .mode-hint {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 0.6rem;
+      font-style: italic;
+    }
   </style>
 </head>
 <body>
@@ -258,21 +293,29 @@
 
     about: [
       {
-        text: "I'm pursuing an {expand} with a 3.2 GPA, and I split my time between CAD models, game engines, and high-voltage hobby builds.",
-        expand: {
+        text: "I'm pursuing an {degree} with a 3.2 GPA, and I split my time between CAD models, game engines, and high-voltage hobby builds.",
+        degree: {
           label: "Associate of Science in Mechanical Engineering",
           detail: "GPA 3.2 · Blinn College on Rellis Campus, in partnership with Tarleton University · 2024–2026. Focused on mechanical systems, simulation, and hands-on fabrication."
         }
       },
       {
-        text: "I'm fluent in English and Spanish, and I've worked as a {expand} and a {expand2} before diving deeper into engineering and creative work.",
-        expand: {
+        text: "Previous jobs:\n{Sonic}, {HRT}, {Lifeguard}, {WSI}",
+        Sonic: {
+          label: "Crewmate at Sonic",
+          detail: "Made drinks, ran the window, learned how to stay fast and accurate during a dinner rush. First real job, first real lessons in customer service."
+        },
+        HRT: {
           label: "Hardware Repair Technician",
           detail: "Reynolds & Reynolds · May 2024 – May 2025. Diagnosed and repaired hardware systems, developed a methodical approach to technical troubleshooting under real-world conditions."
         },
-        expand2: {
-          label: "Swim Instructor & Lifeguard",
-          detail: "City of College Station · Apr–Sept 2021. Water safety instruction and emergency response — turns out teaching 7-year-olds to not drown is harder than it sounds."
+        Lifeguard: {
+          label: "Lifeguard",
+          detail: "City of College Station · Apr–Sept 2021. Water safety monitoring and emergency response for public pools."
+        },
+        WSI: {
+          label: "Water Safety Instructor",
+          detail: "City of College Station · Apr–Sept 2021. Taught swim lessons to kids — turns out teaching 7-year-olds to not drown is harder than it sounds."
         }
       }
     ],
@@ -314,13 +357,12 @@
       intro: "Games I've built in Unreal Engine — click any title for details.",
       list: [
         {
-          meta: "Unreal Engine · Hobbyist Game Dev",
-          title: "Escape the Lab",
+          meta: "Unreal Engine · Game Dev",
+          title: "[ Your Game Title Here ]",
           detail: "Add a short description of the game — genre, what makes it interesting, any notable mechanics or visual style. You can add a screenshot or link here too."
-        },
-
+        }
       ],
-      footnote: "I may never finish any games, but I find it fun and I learn a lot about OS scheduling, high performance code, and ergonomic design."
+      footnote: "→ More games coming soon. Or you can email me and ask nicely."
     },
 
     skills: [
@@ -366,15 +408,26 @@
         <span>${esc(s.contact.phone)}</span>
         <span>${esc(s.contact.location)}</span>
       </div>
+      <div class="mode-toggle">
+        <button class="mode-btn" data-mode="skim" onclick="setMode('skim')">Skim it</button>
+        <button class="mode-btn" data-mode="dig" onclick="setMode('dig')">Dig in</button>
+      </div>
+      <p class="mode-hint" id="mode-hint"></p>
     `;
   }
 
   function renderAbout() {
     const items = SITE.about.map(block => {
-      // Replace {expand} and {expand2} placeholders with rendered triggers
-      let html = esc(block.text);
-      if (block.expand) html = html.replace('{expand}', expandTrigger(block.expand));
-      if (block.expand2) html = html.replace('{expand2}', expandTrigger(block.expand2));
+      // `text` can contain any number of {keyName} placeholders — every other
+      // property on the block is treated as an expandable term keyed by that name.
+      let html = esc(block.text).replace(/\n/g, '<br>');
+      Object.keys(block).forEach(key => {
+        if (key === 'text') return;
+        const placeholder = `{${key}}`;
+        if (html.includes(placeholder)) {
+          html = html.replace(placeholder, expandTrigger(block[key]));
+        }
+      });
       return `<div class="expand-wrap"><p>${html}</p></div>`;
     }).join('');
     return section('About', items);
@@ -445,6 +498,7 @@
             renderAbout() + renderProjects() + renderGames() + renderSkills() + renderContact();
     renderFooter();
     initEffects();
+    setMode('skim');
   }
 
   // Cursor dot + expand/collapse + scroll fade-in
@@ -454,6 +508,28 @@
     if (content && content.classList.contains('expand-content')) {
       content.classList.toggle('open');
     }
+  }
+
+  const MODE_HINTS = {
+    skim: "Compact view — click any underlined term for the full story.",
+    dig: "Everything's expanded — the how, not just the what."
+  };
+
+  function setMode(mode) {
+    document.querySelectorAll('.mode-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.mode === mode);
+    });
+    const hint = document.getElementById('mode-hint');
+    if (hint) hint.textContent = MODE_HINTS[mode] || '';
+
+    const shouldOpen = mode === 'dig';
+    document.querySelectorAll('.expand-trigger').forEach(trigger => {
+      trigger.classList.toggle('open', shouldOpen);
+      const content = trigger.nextElementSibling;
+      if (content && content.classList.contains('expand-content')) {
+        content.classList.toggle('open', shouldOpen);
+      }
+    });
   }
 
   function initEffects() {
