@@ -1,52 +1,60 @@
 var timeline = document.getElementById("timeline");
 var paragraphs = document.getElementById("paragraphs");
 var buttons = document.getElementById("filterToggle");
-import data from "./data.json" with {type: "json"};
+import data from "./data/data.json" with {type: "json"};
 console.log(data);
 
-function makeButton(text, location, paragraph, paragraphs) {
-    const button = document.createElement("button");
-    button.textContent = text;
-    button.paragraph = paragraph;
-    button.setAttribute("button", "active");
-    button.setAttribute("button", "inactive");
-    button.classList.toggle("active", true);
-    button.classList.toggle("inactive", false);
-    button.addEventListener("click", () => {
-        button.classList.toggle( "active");
-        button.classList.toggle( "inactive");
-    })
-    location.appendChild(button);
-    paragraphs.appendChild(paragraph);
-}
+var timelineEntry = [];
 
-function metaCrawler(meta) {
 
-}
-function dataSolver(obj) {
-    if(Object.keys("METADATA")) {
-
+// phase 1: walk data.json + FORMAT, produce flat entries
+function buildEntries(data, formatNode = null) {
+    console.log(data);
+    if(Object.hasOwn(data, "METADATA")) {
+        formatNode = data.METADATA.FORMAT;
+    }
+    if(formatNode) { // format driven mode
+        
+    } else { // search until we find METADATA
+        if(Array.isArray(data)) {
+            for(let thing of data) {
+                buildEntries(thing, formatNode);
+            }
+        } else if(typeof data == "object" && data !== null) {
+            for(let key of Object.keys(data)) {
+                buildEntries(data[key], formatNode);
+            }
+        }
+    }
+    if(Array.isArray(data)) {
+        for(let thing in data) {
+            buildEntries(thing);
+        }
+    } else if(typeof data === "object") {
+        for(let key of Object.keys(data)) {
+            buildEntries(data[key]);
+        }
     }
 }
 
-for(const filter of Object.keys(data)) {
-    const paragraph = document.createElement("p");
-        paragraph.innerHTML += "<h1>" + filter + "</h1>";
-        //const metaInstructions = data[filter].metadata.style;
-        //var steps = metaInstructions.split("-");
-
-
-        //traversePattern(metaInstructions, filter, paragraph);
-
-        console.log(filter);
-        for(const subfilter of Object.keys(data[filter])) {
-            if(subfilter !== "METADATA") {
-                paragraph.innerHTML += "<h2>" + subfilter + "</h2>";
-            }
-        }
-        //console.log(data[filter]);
-    const button = document.createElement("button");
-
-    buttons.appendChild(button);
-    paragraphs.appendChild(paragraph);
+// phase 2: group/sort entries for lookup
+function indexEntries(entries) {
+    
 }
+
+// phase 3: render timeline, paragraphs, and buttons from indexed entries
+function render(indexed) {
+    
+}
+
+
+function inferType(string, parentDataType) {
+    if(string.includes(":")) {
+        var type;
+        [string, type] = string.split(":")
+        return type;
+    } else {
+        return parentDataType;
+    }
+}
+buildEntries(data);

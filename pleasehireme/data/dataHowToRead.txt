@@ -1,0 +1,31 @@
+Sigils
+ (typing, exists in metadata)
+    "#X": wildcard, match this pattern
+    "?X": shape-choice, the data inside this may look like this, and if so, this is its types
+    "!X": exception, am optional fallback for the shape-choice
+    "$(X)": composite, string has comma seperated values inside it that represent something
+ (visibility, exists in data)
+    "+..." : This term is a hidden term that has to be called from inside a {} bracket elsewhere.
+    "... {X} ..." : X, which will be defined in "+X", is a popout term
+    "... ^{X} ...": X is a popout term that is displayed normally. This is done to allow the string to have a custom data type like PHONE.
+Reserved words (in ALL CAPS)
+ General
+    METADATA
+    FORMAT
+    DESCRIPTION
+ Types
+    EMAIL
+    PHONE
+    LINK
+    DATE
+        START
+        END
+            PRESENT
+                FUTURE
+    LOCATION
+    GRADE
+    COLOR
+        COLOR1
+        COLOR2
+ Information
+    AGE

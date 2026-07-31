@@ -1,0 +1,13 @@
+svg {
+    border: 2px solid #000000;
+}
+#timeline {
+    width: 100%;
+    height: 300px;
+}
+button.active {
+    background: yellow;
+}
+button.inactive {
+    background: white;
+}

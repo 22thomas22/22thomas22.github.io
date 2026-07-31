@@ -1,0 +1,323 @@
+{
+  "METADATA": {
+    "#filter:BUTTON<-META": {
+      "METADATA": [
+        "main:COLOR1",
+        "secondary:COLOR2"
+      ]
+    }
+  },
+
+  "School": {
+    "METADATA": {
+      "FORMAT": {
+        "#school type": {
+          "#school": {
+            "location": "LOCATION",
+            "$(start:START, end:END)": {
+              "#class<-UNIT": [
+                "name", "symbol", "grade:GRADE", "credits", "DESCRIPTION"
+              ]
+            }
+          }
+        }
+      },
+
+      "color": {
+        "main": "#FF0000",
+        "secondary": "#00FF00"
+      }
+    },
+
+    "Middle School": {
+      "Laramie Middle School": [
+
+      ]
+    },
+    "High School": {
+      "Laramie High School": [
+
+      ],
+      "A&M Consolidated High School": [
+
+      ]
+    },
+    "College": {
+      "Blinn": {
+        "location": "3100 TX-47, Bryan, TX, 77807",
+        "8/21/24,1/13/25": [
+          {
+            "name": "Gen Chem for Engineering Majors",
+            "symbol": "CHEM 1409",
+            "grade": "A",
+            "credits": 4,
+            "DESCRIPTION": {
+              "MAIN": "Covered the basics of chemical concepts"
+            }
+          },
+          {
+            "name": "Composition 1",
+            "symbol": "ENGL 1301",
+            "grade": "A",
+            "credits": 3,
+            "DESCRIPTION": {"MAIN":  ""}
+          },
+          {
+            "name": "Introduction to Engineering",
+            "symbol": "ENGR 1201",
+            "grade": "B",
+            "credits": 2,
+            "DESCRIPTION": {"MAIN":  ""}
+          },
+          {
+            "name": "Calculus II",
+            "symbol": "MATH 2414",
+            "grade": "C",
+            "credits": 4,
+            "DESCRIPTION": {"MAIN":  ""}
+          },
+          {
+            "name": "University Physics I Lecture",
+            "symbol": "PHYS 2325",
+            "grade": "A",
+            "credits": 3,
+            "DESCRIPTION": {"MAIN":  ""}
+          }
+        ],
+        "1/13/25,5/7/25": [
+          {
+            "name": "Programming Fundamentals I",
+            "symbol": "COSC 1436",
+            "grade": "A",
+            "credits": 4,
+            "DESCRIPTION": {
+              "MAIN": "covered the basics of {C++}",
+              "C++": "a lower-level programming language used for its versatility and speed"
+            }
+          },
+          {
+            "name": "Technical Writing",
+            "symbol": "ENG 2311",
+            "grade": "C",
+            "credits": 3,
+            "DESCRIPTION": {"MAIN":  ""}
+          },
+          {
+            "name": "United States History I",
+            "symbol": "HIST 1301",
+            "grade": "Q",
+            "credits": 3,
+            "DESCRIPTION": {"MAIN":  ""}
+          },
+          {
+            "name": "Calculus III",
+            "symbol": "MATH 2415",
+            "grade": "C",
+            "credits": 4,
+            "DESCRIPTION": {"MAIN":  ""}
+          },
+          {
+            "name": "University Physics II Lecture",
+            "symbol": "PHYS 2326",
+            "grade": "Q",
+            "credits": 3,
+            "DESCRIPTION": {"MAIN":  ""}
+          }
+        ],
+        "7/7/25,8/5/25": [
+          {
+            "name": "Programming Fundamentals II",
+            "symbol": "COSC 1437",
+            "grade": "A",
+            "credits": 4,
+            "DESCRIPTION": {"MAIN":  ""}
+          }
+        ],
+        "8/25/25,12/10/25": [
+          {
+            "name": "Learning Framework",
+            "symbol": "EDUC 1100",
+            "grade": "F",
+            "credits": 1,
+            "DESCRIPTION": {"MAIN":  ""}
+          },
+          {
+            "name": "Engineering Mechanics Statics",
+            "symbol": "ENGR 2301",
+            "grade": "Q",
+            "credits": 3,
+            "DESCRIPTION": {"MAIN":  ""}
+          },
+          {
+            "name": "Differential Equations",
+            "symbol": "MATH 2320",
+            "grade": "C",
+            "credits": 3,
+            "DESCRIPTION": {"MAIN":  ""}
+          },
+          {
+            "name": "University Physics I Lab",
+            "symbol": "PHYS 2125",
+            "grade": "A",
+            "credits": 1,
+            "DESCRIPTION": {"MAIN":  ""}
+          },
+          {
+            "name": "University Physics II Lab",
+            "symbol": "PHYS 2126",
+            "grade": "A",
+            "credits": 1,
+            "DESCRIPTION": {"MAIN":  ""}
+          },
+          {
+            "name": "University Physics II Lecture",
+            "symbol": "PHYS 2326",
+            "grade": "A",
+            "credits": 3,
+            "DESCRIPTION": {"MAIN":  ""}
+          }
+        ],
+        "1/20/26,5/7/26": [
+          {
+            "name": "Engineering Graphics I",
+            "symbol": "ENGR 1304",
+            "grade": "B",
+            "credits": 3,
+            "DESCRIPTION": {"MAIN":  ""}
+          },
+          {
+            "name": "Engineering Mechanics Statics",
+            "symbol": "ENGR 2301",
+            "grade": "D",
+            "credits": 3,
+            "DESCRIPTION": {"MAIN":  ""}
+          },
+          {
+            "name": "Electrical Circuits",
+            "symbol": "ENGR 2405",
+            "grade": "C",
+            "credits": 4,
+            "DESCRIPTION": {"MAIN":  ""}
+          },
+          {
+            "name": "Linear Algebra",
+            "symbol": "MATH 2318",
+            "grade": "Q",
+            "credits": 3,
+            "DESCRIPTION": {"MAIN":  ""}
+          }
+        ]
+      },
+      "Texarkana": []
+    }
+  },
+  "Work": {
+    "METADATA": {
+      "FORMAT": {
+        "#workplace<-UNIT": [
+          "start date:START", "end date:END",
+          "position",
+          "work location:LOCATION",
+          "DESCRIPTION",
+          {"employer":  [
+              "name:NAME",
+              "phone:PHONE",
+              "email:EMAIL"
+          ]}
+        ]
+      }
+    },
+
+    "Sonic": {
+      "start date": "7/1/25",
+      "end date": "PRESENT",
+      "position": "Crew Member / Carhop",
+      "work location": "401 Texas Ave, College Station TX, 77840",
+      "DESCRIPTION": {"MAIN":  ""},
+      "employer": {
+        "name": "Skyla Church",
+        "phone": "979-846-2359"
+      }
+    },
+    "Reynolds and Reynolds": {
+
+    }
+  },
+  "Projects": {
+    "METADATA": {
+      "STYLE": {
+        "#project<-UNIT": [
+          {
+            "?duration": [
+              "start:START",
+              "end:END"
+            ],
+            "?event": [
+              "time:DATE"
+            ]
+          },
+          "location:LOCATION",
+          "DESCRIPTION"
+        ]
+      }
+    },
+    "Solid State Tesla Coil": {
+      "start": "6/21/22",
+      "end": "9/22/22",
+      "LOCATION": "College Station, TX",
+      "DESCRIPTION": {
+        "MAIN": "Created a 100 kilovolt {Tesla Coil}",
+          "+Tesla Coil": "A {resonant transformer} that creates huge potential voltage differences until it arcs through the air",
+            "+resonant transformer": "Tesla coils are a type of {LRC} circuit.",
+              "+LRC": "LRC stands for {Inductor} (symbol L for Henries), R for {Resistor}, and C for {Capacitor}.",
+              "+Inductor": "Inductors store magnetic energy, typically through tight windings of a wire. In this case, they are the winding neck of a tesla coil. Tesla coils have a {primary and secondary} inductor.",
+                "+primary and secondary": "These two coils act together to increase the total voltage difference. The less windings on the primary and more windings on the secondary, the higher the voltage, with some other complicated rules added in.",
+              "+Resistor": "Resistors are an electrical component that create a \"kink\" in a circuit, \"slowing\" down the net movement of electrons.",
+              "+Capacitor": "An electrical tool to store charge between two plates. The two plates are physically separated, and in this case, the air works because of the high voltage that causes the air to break down."
+      }
+    }
+  },
+  "About Me": {
+    "METADATA": {
+      "STYLE": {
+        "#event<-UNIT": [
+          {
+            "?life": [
+              "born:START",
+              "died:END"
+            ],
+            "?event": [
+              "start:START",
+              "end:END"
+            ],
+            "!information<-NODATE": []
+          }
+        ]
+      }
+    },
+    "Contact": {
+      "Personal Email:EMAIL": "thomasscottcrawford20@gmail.com",
+      "School Email:EMAIL": "",
+      "Phone:PHONE": "979-721-3520",
+      "My Github": "^{main}, {projects}",
+        "+main:LINK": "[My Profile](https://github.com/22thomas22)",
+        "+projects": "^{repositories}, {expand for projects}",
+          "+repositories:LINK": "[My Repositories](https://github.com/22thomas22?tab=repositories)",
+          "+expand for projects": "^{Sudoku Solver}, ^{Cursed Code}, ^{This Website}",
+            "+Sudoku Solver:LINK": "",
+            "+Cursed Code:LINK": "",
+            "+This Website:LINK": ""
+    },
+    "My Life": {
+      "age": "AGE {years old}",
+      "+years old": "^{born}, ^{died}",
+      "+born": "11/20/03",
+      "+died": "FUTURE",
+      "gender": "male"
+    }
+
+  },
+  "Service Projects": {
+
+  }
+}
