@@ -8,53 +8,70 @@ var timelineEntry = [];
 
 
 // phase 1: walk data.json + FORMAT, produce flat entries
-function buildEntries(data, formatNode = null) {
-    console.log(data);
+var globalData = [];
+/*function walker(data, format = null, collectedData = {}) {
     if(Object.hasOwn(data, "METADATA")) {
-        formatNode = data.METADATA.FORMAT;
+        console.assert(data.METADATA.FORMAT !== null);
+        format = data.METADATA.FORMAT;
     }
-    if(formatNode) { // format driven mode
-        
-    } else { // search until we find METADATA
-        if(Array.isArray(data)) {
-            for(let thing of data) {
-                buildEntries(thing, formatNode);
+    if(format !== null) {
+        if(typeof data == "object") {
+            for (let subfield of Object.keys(data)) {
+                if(Object.hasOwn(format, subfield)) { // use this metadata entry to define the object, not a wildcard
+                    if(typeof format[subfield] === "string") {
+                        collectedData[format[subfield]] = data[subfield];
+                    } else if(Array.isArray(data[subfield])) {
+                        for(let arrayData of data[subfield]) {
+                            // walker(data[subfield][arrayData], format[subfield])
+                        }
+                    } else if(typeof data[subfield] === "object") {
+                        walker(data[subfield], format[subfield], collectedData);
+                    }
+                }
             }
-        } else if(typeof data == "object" && data !== null) {
-            for(let key of Object.keys(data)) {
-                buildEntries(data[key], formatNode);
+        } else if(Array.isArray(data)) {
+
+        }
+
+    }
+}*/
+
+function execute(formatNode, dataNode, data= []) {
+    let formatExpander = {};
+    for(let i in formatNode) { // preformatting to determine if we have a predefined type for our data or not
+        formatExpander[i] = [];
+        for(let j in formatNode[i]) {
+            formatExpander[i][j] = {};
+            let formatKey = formatNode[i][j];
+            if(formatKey.includes(":")) {
+                let name, id;
+                [name,id] = formatKey.split(":");
+                formatExpander[i][j][name] = id;
+            } else {
+                formatExpander[i][j][formatKey] = null;
             }
         }
     }
-    if(Array.isArray(data)) {
-        for(let thing in data) {
-            buildEntries(thing);
-        }
-    } else if(typeof data === "object") {
-        for(let key of Object.keys(data)) {
-            buildEntries(data[key]);
+    formatExpander = Object.values(formatExpander)[0]; // recurse inwards by one step
+    let scopedFormat = {};
+    for(let i of formatExpander) {
+        scopedFormat[Object.keys(i)[0]] = Object.values(i)[0];
+    }
+    for(let i in dataNode) {
+        data[i] = {};
+        for(let j in dataNode[i]) {
+            if(Object.hasOwn(scopedFormat, j) && scopedFormat[j]/*is not null*/) {
+                data[i][scopedFormat[j]] = dataNode[i][j];
+            } else {
+                data[i][j] = dataNode[i][j];
+            }
         }
     }
+    return data;
 }
-
-// phase 2: group/sort entries for lookup
-function indexEntries(entries) {
-    
-}
-
-// phase 3: render timeline, paragraphs, and buttons from indexed entries
-function render(indexed) {
-    
-}
-
-
-function inferType(string, parentDataType) {
-    if(string.includes(":")) {
-        var type;
-        [string, type] = string.split(":")
-        return type;
-    } else {
-        return parentDataType;
-    }
-}
-buildEntries(data);
+var collected = {};
+Object.assign(collected,
+    execute(
+    undefined,{})
+);
+console.log(collected);
