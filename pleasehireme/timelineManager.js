@@ -72,6 +72,29 @@ function execute(formatNode, dataNode, data= []) {
 var collected = {};
 Object.assign(collected,
     execute(
-    undefined,{})
+    {
+        "#grades<-UNIT": [
+            "grade:GRADE",
+            "phone:PHONE",
+            "email:EMAIL",
+            "name",
+            "location:LOCATION"
+        ]
+    },
+    [
+        {
+            "grade": "A",
+            "phone": "123",
+            "email": "e@ecom",
+            "name": "person",
+            "human": "true"
+        },
+        {
+            "grade": "C",
+            "phone": "456",
+            "email": "mail",
+            "name": "bill nye"
+        }
+    ])
 );
 console.log(collected);
