@@ -1,10 +1,12 @@
 {
   "METADATA": {
-    "#filter:BUTTON<-META": {
-      "METADATA": [
-        "main:COLOR1",
-        "secondary:COLOR2"
-      ]
+    "FORMAT": {
+      "#filter:BUTTON<-META": {
+        "METADATA": [
+          "main:COLOR1",
+          "secondary:COLOR2"
+        ]
+      }
     }
   },
 
@@ -245,7 +247,7 @@
   },
   "Projects": {
     "METADATA": {
-      "STYLE": {
+      "FORMAT": {
         "#project<-UNIT": [
           {
             "?duration": [
@@ -279,7 +281,7 @@
   },
   "About Me": {
     "METADATA": {
-      "STYLE": {
+      "FORMAT": {
         "#event<-UNIT": [
           {
             "?life": [
